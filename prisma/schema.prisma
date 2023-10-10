@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model stores {
+  shop     String   @id
+  isActive Boolean? @default(false)
+}
+
+model session {
+  id      String  @id
+  content String? @db.Text
+  shop    String?
+}
+
+model product {
+  id String @id @default(uuid())
+  content String @default("test")
+}
+// This shows how I can add product data to the database, dont forget to run npx prisma DB push
