@@ -1,0 +1,35 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "nextjs-test-app"
+client_id = "14b801a3a9af900f522044aa80f8b249"
+application_url = "https://16ed-94-247-4-243.ngrok-free.app"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://16ed-94-247-4-243.ngrok-free.app/api/auth/tokens",
+  "https://16ed-94-247-4-243.ngrok-free.app/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+  [webhooks.privacy_compliance]
+  customer_deletion_url = "https://16ed-94-247-4-243.ngrok-free.app/api/gdpr/customers_redact"
+  customer_data_request_url = "https://16ed-94-247-4-243.ngrok-free.app/api/gdpr/customers_data_request"
+  shop_deletion_url = "https://16ed-94-247-4-243.ngrok-free.app/api/gdpr/shop_redact"
+
+[app_proxy]
+url = "https://16ed-94-247-4-243.ngrok-free.app/api/proxy_route"
+subpath = "next-proxy"
+prefix = "apps"
+
+[pos]
+embedded = false
+
+[build]
+dev_store_url = "youpteststore1.myshopify.com"

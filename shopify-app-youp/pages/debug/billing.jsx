@@ -1,5 +1,5 @@
 import useFetch from "@/components/hooks/useFetch";
-import { DataTable, Layout, LegacyCard, Page } from "@shopify/polaris";
+import { Button, Card, DataTable, Layout, Page, InlineStack } from "@shopify/polaris";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -28,25 +28,22 @@ const BillingAPI = () => {
     >
       <Layout>
         <Layout.Section>
-          <LegacyCard
-            sectioned
-            primaryFooterAction={{
-              content: "Subscribe merchant",
-              onAction: () => {
-                fetchContent();
-              },
-            }}
-          >
-            <p>
-              Subscribe your merchant to a test $10.25 plan and redirect to your
-              home page.
-            </p>
+          <Card>
+            <InlineStack align="space-between" wrap={false}>
+              <p>
+                Subscribe your merchant to a test $10.25 plan and redirect to
+                your home page.
+              </p>
+              <Button variant="primary" onClick={() => fetchContent()}>
+                Subscribe merchant
+              </Button>
+            </InlineStack>
 
             {
               /* If we have an error, it'll pop up here. */
               responseData && <p>{responseData}</p>
             }
-          </LegacyCard>
+          </Card>
         </Layout.Section>
         <Layout.Section>
           <ActiveSubscriptions />
@@ -86,13 +83,14 @@ const ActiveSubscriptions = () => {
   }, []);
 
   return (
-    <LegacyCard title="Active Subscriptions" sectioned>
+    <Card>
+      <h1>Active Subscriptions</h1>
       <DataTable
         columnContentTypes={["text", "text", "text", "text"]}
         headings={["Plan Name", "Status", "Test", "Amount"]}
         rows={rows}
       />
-    </LegacyCard>
+    </Card>
   );
 };
 

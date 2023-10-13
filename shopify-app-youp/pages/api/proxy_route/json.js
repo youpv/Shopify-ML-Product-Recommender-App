@@ -1,5 +1,3 @@
-// If you have the recommended extension installed, create a new page and type `createproxy` to generate proxy route boilerplate
-
 import clientProvider from "@/utils/clientProvider";
 import withMiddleware from "@/utils/middleware/withMiddleware.js";
 
@@ -12,7 +10,13 @@ const handler = async (req, res) => {
     shop: req.user_shop,
   });
 
-  return res.status(200).send({ content: "Proxy Be Working" });
+  const { handle } = req.query;
+  console.log("handle", handle);
+  const content = handle
+    ? `Recommendation for ${handle}`
+    : "No recommendation found.";
+
+  return res.status(200).send({ content });
 };
 
 export default withMiddleware("verifyProxy")(handler);

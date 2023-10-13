@@ -1,0 +1,26 @@
+{% if product %}
+  <script>
+    async function getData() {
+      const url = `/apps/demo-proxy/json?handle={{ product.handle }}`;
+      console.log(`---> ${url}`);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
+      });
+      const res = await response.json();
+      console.log(`---> ${res.content}`);
+      document.getElementById('my-heading').textContent = res.content;
+    }
+
+    getData();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Proxy Call",
+  "target": "section"
+}
+{% endschema %}
+
+<h1 id="my-heading"></h1>

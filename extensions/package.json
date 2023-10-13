@@ -1,0 +1,17 @@
+{
+  "name": "extensions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "shopify": "shopify",
+    "generate": "shopify app generate extension",
+    "dev": "shopify app dev",
+    "build": "shopify app build",
+    "info": "shopify app info",
+    "deploy": "shopify app deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

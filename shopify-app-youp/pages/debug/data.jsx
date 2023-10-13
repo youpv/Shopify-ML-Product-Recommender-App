@@ -1,5 +1,5 @@
 import useFetch from "@/components/hooks/useFetch";
-import { Layout, LegacyCard, Page } from "@shopify/polaris";
+import { Layout, Card, Page, InlineStack, Button } from "@shopify/polaris";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -19,17 +19,16 @@ const useDataFetcher = (initialState, url, options) => {
 
 const DataCard = ({ method, url, data, onRefetch }) => (
   <Layout.Section>
-    <LegacyCard
-      sectioned
-      primaryFooterAction={{
-        content: "Refetch",
-        onAction: onRefetch,
-      }}
-    >
-      <p>
-        {method} <code>{url}</code>: {data}
-      </p>
-    </LegacyCard>
+    <Card>
+      <InlineStack align="space-between" wrap={false}>
+        <p>
+          {method} <code>{url}</code>: {data}
+        </p>
+        <Button variant="primary" onClick={onRefetch}>
+          Refetch
+        </Button>
+      </InlineStack>
+    </Card>
   </Layout.Section>
 );
 
