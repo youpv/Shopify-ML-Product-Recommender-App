@@ -3,14 +3,14 @@
     async function getData() {
       const url =
         '/apps/demo-proxy/json?handle={{ product.handle }}&numRecs={{ block.settings.number_of_recommendations }}';
-        console.log(url);
-        console.log({{ section.settings.number_of_recommendations }})
+        {% comment %} console.log(url); {% endcomment %}
+        {% comment %} console.log({{ section.settings.number_of_recommendations }}) {% endcomment %}
       const response = await fetch(url, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
       });
       const res = await response.json();
-      console.log(res);
+      {% comment %} console.log(res); {% endcomment %}
 
       const recommendationList = document.getElementById('recommendation-list');
       res.Recommendation.forEach((item) => {
@@ -60,8 +60,8 @@
 }
 {% endschema %}
 
-<h1>Vaak bezocht:</h1>
-<p>Number of Recommendations: {{ block.settings.number_of_recommendations }}</p>
+<h1>Klanten kochten ook:</h1>
+<p>DEBUG: Aantal aanbevelingen: {{ block.settings.number_of_recommendations }}</p>
 <ul id="recommendation-list" style="background-color: {{ section.settings.recommendation_background_color }};">
   <style>
     #recommendation-list li a {
