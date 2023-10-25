@@ -5,6 +5,8 @@
 # docs/
 database/
 
+.DS_Store
+
 # dependencies
 package-lock.json
 /node_modules
