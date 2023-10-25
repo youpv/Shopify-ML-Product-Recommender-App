@@ -1,15 +1,26 @@
 {% if product %}
   <script>
     async function getData() {
-      const url = `/apps/demo-proxy/json?handle={{ product.handle }}`;
-      console.log(`---> ${url}`);
+      const url =
+        '/apps/demo-proxy/json?handle={{ product.handle }}&numRecs={{ block.settings.number_of_recommendations }}';
+        console.log(url);
+        console.log({{ section.settings.number_of_recommendations }})
       const response = await fetch(url, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
       });
       const res = await response.json();
-      console.log(`---> ${res.content}`);
-      document.getElementById('my-heading').textContent = res.content;
+      console.log(res);
+
+      const recommendationList = document.getElementById('recommendation-list');
+      res.Recommendation.forEach((item) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `/products/${item}`;
+        a.textContent = item;
+        li.appendChild(a);
+        recommendationList.appendChild(li);
+      });
     }
 
     getData();
@@ -19,8 +30,43 @@
 {% schema %}
 {
   "name": "Proxy Call",
-  "target": "section"
+  "target": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "recommendation_text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "recommendation_background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "recommendation_font_size",
+      "label": "Font Size",
+      "default": "16px"
+    },
+    {
+      "type": "number",
+      "id": "number_of_recommendations",
+      "label": "Number of Recommendations",
+      "default": 5
+    }
+  ]
 }
 {% endschema %}
 
-<h1 id="my-heading"></h1>
+<h1>Vaak bezocht:</h1>
+<p>Number of Recommendations: {{ block.settings.number_of_recommendations }}</p>
+<ul id="recommendation-list" style="background-color: {{ section.settings.recommendation_background_color }};">
+  <style>
+    #recommendation-list li a {
+      color: {{ section.settings.recommendation_text_color }};
+      font-size: {{ section.settings.recommendation_font_size }};
+    }
+  </style>
+</ul>
