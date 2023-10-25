@@ -138,7 +138,22 @@ const DebugIndex = () => {
                 </Text>
                 <Text>Get product data</Text>
                 <InlineStack wrap={false} align="end">
-                  <Button
+                  {/* <Button
+                    onClick={() => {
+                      fetch("/api/apps/products")
+                        .then((response) => response.json())
+                        .then((data) => {
+                          console.log(
+                            "Recommended Product IDs:",
+                            data.recommendedIds
+                          );
+                          // You can now use these IDs to fetch further details or display them as needed
+                        });
+                    }}
+                  >
+                    Get Products
+                  </Button> */}
+                  {/* <Button
                     onClick={() => {
                       fetch("/api/apps/products")
                         .then((response) => response.json())
@@ -146,7 +161,13 @@ const DebugIndex = () => {
                     }}
                   >
                     Get Products
-                  </Button>
+                  </Button> */}
+                  {/* <Button
+                    onClick={() => {
+                      const products = getAllProducts();
+                      console.log(products);
+                    }}
+                  ></Button> */}
                 </InlineStack>
               </BlockStack>
             </Card>
