@@ -15,7 +15,12 @@ const rewrites = () => {
     },
     {
       source: "/api/recommendation/:productHandle/:numRecs",
-      destination: "http://127.0.0.1:5137/api/recommendation/:productHandle/:numRecs",
+      destination:
+        "http://127.0.0.1:5137/api/recommendation/:productHandle/:numRecs",
+    },
+    {
+      source: "/api/products",
+      destination: "http://127.0.0.1:5137/api/products",
     },
   ];
 };
