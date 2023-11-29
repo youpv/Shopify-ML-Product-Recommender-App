@@ -1,5 +1,26 @@
-<script src="{{ 'jquery.min.js' | asset_url }}" defer></script>
+{% comment %} OUD EN NIET MEER IN DEVELOPMENT. VOOR DE NIEUWE EXTENSIE, ZIE CROSS-SELL.LIQUID {% endcomment %}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} NIET MEER GEBRUIKEN, ALLEEN TER VERGELIJKING MET NIEUWE CODE. {% endcomment %}
 {% if product %}
   <script>
     async function getData() {
@@ -10,22 +31,23 @@
         headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
       });
       const res = await response.json();
-
+      console.log('res', res);
       const data = res.Recommendation;
       createProductList(data);
 
     }
 
     async function createProductList(data) {
-      console.log("yeah, we're in the createProductList function. But renewed.");
+      console.log("data", data);
       const promises = data.map(item => createSectionCard(item));
-      await Promise.all(promises);
-      {% comment %} data.forEach((item) => {
-        createSectionCard(item);
-      }); {% endcomment %}
+      const cards = await Promise.all(promises);
+      console.log("all promises resolved");
+      const section = document.getElementById("cross-sell-section");
+      cards.forEach(card => {
+        section.appendChild(card);
+      });
     }
     async function createSectionCard(productHandle) {
-      return new Promise(async (resolve, reject) => {
         try {
           const productUrl = `/products/${productHandle}.json`;
           const response = await fetch(productUrl, {
@@ -42,7 +64,6 @@
     
           const res = await response.json();
           const product = res.product;
-          const section = document.getElementById("cross-sell-section");
     
           // Creating the card element
           const card = document.createElement("div");
@@ -95,12 +116,11 @@
             </div>
           `;
     
-          section.appendChild(card);
-          resolve(); // Resolve the promise after appending the card
+          return card;
         } catch (error) {
-          reject(error); // Reject the promise in case of an error
+          console.log("error", error);
+          throw error;
         }
-      });
     }
     
     function updateVariantId(select, productId) {
@@ -109,120 +129,6 @@
       const variantIdInput = document.querySelector(`.product-variant-id-${productId}`);
       variantIdInput.value = variantId;
     }
-    
-    {% comment %} async function createSectionCard(productHandle) {
-      const productUrl = `/products/${productHandle}.json`;
-      const response = await fetch(productUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true",
-        },
-      });
-      const res = await response.json();
-      const product = res.product;
-      const section = document.getElementById("cross-sell-section");
-    
-      // Creating the card element
-      const card = document.createElement("div");
-      card.classList.add("card", "product-card", "product-card--cross-sell");
-
-      let variantsDropdown = '';
-      if (product.variants.length > 1) {
-        variantsDropdown += `<select class="product-card__variants" onchange="updateVariantId(this, ${product.id})">`;
-          product.variants.forEach(variant => {
-            variantsDropdown += `<option value="${variant.id}">${variant.title}</option>`;
-          });
-        variantsDropdown += '</select>';
-      }
-
-    
-      card.innerHTML = `
-      <div class="product-card__image-wrapper">
-        <img class="product-card__image" onclick="location.href='/products/${product.handle}'" src="${product.images[0].src}" alt="${product.images[0].alt}" loading="lazy" />
-      </div>
-      <div class="product-card__info">
-        <h3 class="product-card__title" onclick="location.href='/products/${product.handle}'">${product.title}</h3>
-        <div class="product-card__row">
-          <p class="product-card__price">{{ cart.currency.symbol }} ${product.variants[0].price}</p>
-          ${variantsDropdown}
-        </div>
-        {% comment %} <div class="add-to-cart-btn" onclick="addToCart('${product.variants[0].id}')">Add to Cart</div> {% endcomment %}
-        <form
-          method="post"
-          action="/cart/add"
-          class="form"
-        >
-          <input type="hidden" name="form_type" value="product" />
-          <input
-            type="hidden"
-            name="id"
-            value="${product.variants[0].id}"
-            class="product-variant-id-${product.id}"
-          />
-          <input type="hidden" name="quantity" value="1" />
-          <input type="hidden" name="return_to" value="back" />
-          <div class="product-form__buttons">
-            <button
-              type="submit"
-              name="add"
-              class="product-form__submit button button--full-width button--secondary"
-            >
-              <span>Add to cart </span>
-            </button>
-          </div>
-          <input type="hidden" name="product-id" value="${product.id}" />
-        </form>
-                
-      </div>
-    `;
-      section.appendChild(card);
-    } {% endcomment %}
-
-
-
-    {% comment %} async function addToCart(productId) {
-      console.log("Product ID to add to cart:", productId);
-      // Add your cart functionality here
-      const result = await fetch("/cart/add.js", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true",
-        },
-        body: JSON.stringify({
-          id: productId,
-          quantity: 1,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success:", data);
-          $(document).trigger("cart:refresh");
-          alert("Product added to cart!");
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    } {% endcomment %}
-    {% comment %} async function addToCart(variantId) {
-      $.ajax({
-        type: "POST",
-        url: "/cart/add.json",
-        data: {
-          quantity: 1,
-          id: variantId,
-        },
-        dataType: "json",
-        success: function () {
-          console.log("success");
-          {% comment %} $(document).trigger("cart:refresh"); {% endcomment %}
-        },
-        error: function () {
-          console.log("error");
-        },
-      });
-    } {% endcomment %}
 
     getData();
   </script>
@@ -361,14 +267,6 @@
     margin: auto;
   }
 
-  .add-to-cart-btn {
-    background-color: var(--cta-color);
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
-    display: inline-block;
-    margin: 10px 0;
-    cursor: pointer;
-  }
 </style>
+
 <div id="cross-sell-section" class="carousel-container"></div>
