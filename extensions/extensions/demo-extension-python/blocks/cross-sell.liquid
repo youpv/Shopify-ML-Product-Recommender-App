@@ -105,10 +105,10 @@
             body: formData,
           });
           const result = await response.json();
-          if (response.ok) {
+          if (response.ok || response.status === 422) {
+            // Temporary fix for 422 error. Currently, the cart API returns a 422 error when the product is already in the cart, but still adds the product to the cart. This is a bug in the cart API I think.
             showModal('Item added to cart!', 'success');
           } else {
-            console.error(result);
             showModal(
               `Could not add product to cart! Reason: ${result.description}`,
               'error'
@@ -202,6 +202,12 @@
       "id": "number_of_recommendations",
       "label": "Number of Recommendations",
       "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "use_skeleton_loading",
+      "label": "Use Skeleton Loading",
+      "default": true
     }
   ]
 }
@@ -332,96 +338,98 @@
 </style>
 
 <div id="cross-sell-section" class="carousel-container">
-  <div class="card product-card product-card--cross-sell skeleton">
-    <div class="product-card__image-wrapper">
-      <div class="product-card__image"></div>
-    </div>
-    <div class="product-card__info">
-      <h3 class="product-card__title">
-        <div class="product-card__title"></div>
-      </h3>
-      <div class="product-card__row">
-        <p class="product-card__price">
-          <div class="product-card__price"></div>
-        </p>
+  {% if block.settings.use_skeleton_loading %}
+    <div class="card product-card product-card--cross-sell skeleton">
+      <div class="product-card__image-wrapper">
+        <div class="product-card__image"></div>
       </div>
-      <div class="skeleton button button--full-width">
-        <span class="skeleton"></span>
-      </div>
-    </div>
-  </div>
-  <div class="card product-card product-card--cross-sell skeleton">
-    <div class="product-card__image-wrapper">
-      <div class="product-card__image"></div>
-    </div>
-    <div class="product-card__info">
-      <h3 class="product-card__title">
-        <div class="product-card__title"></div>
-      </h3>
-      <div class="product-card__row">
-        <p class="product-card__price">
-          <div class="product-card__price"></div>
-        </p>
-      </div>
-      <div class="skeleton button button--full-width">
-        <span class="skeleton"></span>
+      <div class="product-card__info">
+        <h3 class="product-card__title">
+          <div class="product-card__title"></div>
+        </h3>
+        <div class="product-card__row">
+          <p class="product-card__price">
+            <div class="product-card__price"></div>
+          </p>
+        </div>
+        <div class="skeleton button button--full-width">
+          <span class="skeleton"></span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card product-card product-card--cross-sell skeleton">
-    <div class="product-card__image-wrapper">
-      <div class="product-card__image"></div>
-    </div>
-    <div class="product-card__info">
-      <h3 class="product-card__title">
-        <div class="product-card__title"></div>
-      </h3>
-      <div class="product-card__row">
-        <p class="product-card__price">
-          <div class="product-card__price"></div>
-        </p>
+    <div class="card product-card product-card--cross-sell skeleton">
+      <div class="product-card__image-wrapper">
+        <div class="product-card__image"></div>
       </div>
-      <div class="skeleton button button--full-width">
-        <span class="skeleton"></span>
-      </div>
-    </div>
-  </div>
-  <div class="card product-card product-card--cross-sell skeleton">
-    <div class="product-card__image-wrapper">
-      <div class="product-card__image"></div>
-    </div>
-    <div class="product-card__info">
-      <h3 class="product-card__title">
-        <div class="product-card__title"></div>
-      </h3>
-      <div class="product-card__row">
-        <p class="product-card__price">
-          <div class="product-card__price"></div>
-        </p>
-      </div>
-      <div class="skeleton button button--full-width">
-        <span class="skeleton"></span>
+      <div class="product-card__info">
+        <h3 class="product-card__title">
+          <div class="product-card__title"></div>
+        </h3>
+        <div class="product-card__row">
+          <p class="product-card__price">
+            <div class="product-card__price"></div>
+          </p>
+        </div>
+        <div class="skeleton button button--full-width">
+          <span class="skeleton"></span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card product-card product-card--cross-sell skeleton">
-    <div class="product-card__image-wrapper">
-      <div class="product-card__image"></div>
-    </div>
-    <div class="product-card__info">
-      <h3 class="product-card__title">
-        <div class="product-card__title"></div>
-      </h3>
-      <div class="product-card__row">
-        <p class="product-card__price">
-          <div class="product-card__price"></div>
-        </p>
+    <div class="card product-card product-card--cross-sell skeleton">
+      <div class="product-card__image-wrapper">
+        <div class="product-card__image"></div>
       </div>
-      <div class="skeleton button button--full-width">
-        <span class="skeleton"></span>
+      <div class="product-card__info">
+        <h3 class="product-card__title">
+          <div class="product-card__title"></div>
+        </h3>
+        <div class="product-card__row">
+          <p class="product-card__price">
+            <div class="product-card__price"></div>
+          </p>
+        </div>
+        <div class="skeleton button button--full-width">
+          <span class="skeleton"></span>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="card product-card product-card--cross-sell skeleton">
+      <div class="product-card__image-wrapper">
+        <div class="product-card__image"></div>
+      </div>
+      <div class="product-card__info">
+        <h3 class="product-card__title">
+          <div class="product-card__title"></div>
+        </h3>
+        <div class="product-card__row">
+          <p class="product-card__price">
+            <div class="product-card__price"></div>
+          </p>
+        </div>
+        <div class="skeleton button button--full-width">
+          <span class="skeleton"></span>
+        </div>
+      </div>
+    </div>
+    <div class="card product-card product-card--cross-sell skeleton">
+      <div class="product-card__image-wrapper">
+        <div class="product-card__image"></div>
+      </div>
+      <div class="product-card__info">
+        <h3 class="product-card__title">
+          <div class="product-card__title"></div>
+        </h3>
+        <div class="product-card__row">
+          <p class="product-card__price">
+            <div class="product-card__price"></div>
+          </p>
+        </div>
+        <div class="skeleton button button--full-width">
+          <span class="skeleton"></span>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
 <dialog id="cta-modal">
   <p id="cta-modal-message"></p>
