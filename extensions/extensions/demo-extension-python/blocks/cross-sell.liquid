@@ -100,7 +100,7 @@
         event.preventDefault();
         try {
           const formData = new FormData(form);
-          const response = await fetch('/cart/add.json', {
+          const response = await fetch('/cart/add.js', {
             method: 'POST',
             body: formData,
           });
@@ -110,7 +110,7 @@
           } else {
             console.error(result);
             showModal(
-              'Could not add this product to your cart. Please try again later.',
+              `Could not add product to cart! Reason: ${result.description}`,
               'error'
             );
           }
@@ -141,10 +141,24 @@
       modalMessage.textContent = message;
       modal.showModal();
 
-      modalClose.onclick = () => modal.close();
+      modalClose.onclick = () => {
+        if (type === 'success') {
+          sessionStorage.setItem('scroll-position', window.scrollY);
+          window.location.reload();
+        }
+        modal.close();
+      };
     }
 
     initializeCrossSell();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedPosition = sessionStorage.getItem('scroll-position');
+      if (savedPosition) {
+        window.scrollTo(0, parseInt(savedPosition, 10));
+        sessionStorage.removeItem('scroll-position');
+      }
+    });
   </script>
 {% endif %}
 
