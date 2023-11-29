@@ -1,31 +1,9 @@
-{% comment %} <script>
-    async function getAllProducts() {
-      const url = `/apps/demo-proxy/getProducts`; // Updated endpoint to fetch all products
-      console.log(`---> Fetching products from: ${url}`);
-      
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
-      });
-      
-      const products = await response.json();
-      console.log(`---> Fetched products:`, products);
-      
-      // Example: Display the titles of all fetched products
-      const productTitles = products.map(product => `<li>${product.title}</li>`).join('');
-      document.getElementById('product-list').innerHTML = productTitles;
-    }
-  
+{% schema %}
+{
+  "name": "All Products",
+  "target": "section"
+}
+{% endschema %}
 
-  </script> {% endcomment %}
-  
-  {% schema %}
-  {
-    "name": "All Products",
-    "target": "section"
-  }
-  {% endschema %}
-  
-  <h2>All Products:</h2>
-  <ul id="product-list"></ul>
-  
+<h2>All Products:</h2>
+<ul id="product-list"></ul>
