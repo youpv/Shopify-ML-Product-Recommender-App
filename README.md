@@ -1,5 +1,10 @@
 # Shopify Cross-Sell App met Machine Learning
 
+## BELANGRIJKE INFORMATIE VOOR GASTEN VAN DEZE REPO
+Dit project is nog niet klaar, nog lang niet. Op dit moment is er nog veel refactoring te doen. Wat je wél al kunt bekijken is de extensie code! Ga daarvoor naar [cross-sell.liquid](extensions/extensions/demo-extension-python/blocks/cross-sell.liquid).
+
+Meer is nog niet handig om te beijken. De Python code staat in een andere repo. Mocht je hier geen toegang tot hebben, vraag het me dan. De rest van de readme is nog niet echt relevant.
+
 ## Overzicht
 
 Deze Shopify-app integreert machine learning (ML) mogelijkheden, ontwikkeld in Python (andere repo), om een gepersonaliseerde cross-sell sectie toe te voegen aan Shopify-winkels. Door gebruik te maken van geavanceerde ML-algoritmen, analyseert de app klantgedrag en productgegevens om relevante productaanbevelingen te genereren, waardoor de verkoopkansen worden vergroot.
