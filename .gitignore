@@ -4,6 +4,7 @@
 # _developer/
 # docs/
 database/
+docs/
 
 .DS_Store
 
