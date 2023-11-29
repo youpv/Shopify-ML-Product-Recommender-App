@@ -3,6 +3,8 @@
 ## BELANGRIJKE INFORMATIE VOOR GASTEN VAN DEZE REPO
 Dit project is nog niet klaar, nog lang niet. Op dit moment is er nog veel refactoring te doen. Wat je wél al kunt bekijken is de extensie code! Ga daarvoor naar [cross-sell.liquid](extensions/extensions/demo-extension-python/blocks/cross-sell.liquid).
 
+PROJECT IS TE TESTEN OP [Test Shopify Store](https://youpteststore1.myshopify.com/). (Werkt alleen als iMac aanstaat hehe.)
+
 Meer is nog niet handig om te beijken. De Python code staat in een andere repo. Mocht je hier geen toegang tot hebben, vraag het me dan. De rest van de readme is nog niet echt relevant.
 
 ## Overzicht
