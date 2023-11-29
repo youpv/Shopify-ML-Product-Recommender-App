@@ -1,33 +1,66 @@
-# Shopify Next.js x Prisma Boilerplate
+# Shopify Cross-Sell App met Machine Learning
 
-An embedded app starter template to get up and ready with Shopify app development with Next.js and Prisma.
+## Overzicht
 
-I've included [notes](/docs/NOTES.md) on this repo which goes over the repo on why certain choices were made.
+Deze Shopify-app integreert machine learning (ML) mogelijkheden, ontwikkeld in Python (andere repo), om een gepersonaliseerde cross-sell sectie toe te voegen aan Shopify-winkels. Door gebruik te maken van geavanceerde ML-algoritmen, analyseert de app klantgedrag en productgegevens om relevante productaanbevelingen te genereren, waardoor de verkoopkansen worden vergroot.
 
-## Video
+## Belangrijkste Functies
 
-I made a video that goes over the entire repo, creating theme extension and deploying with Vercel and PlanetScale. If you want to learn Shopify app dev in-depth, I also sell a course _[How To Build Shopify Apps](https://kinngh.gumroad.com/l/how-to-make-shopify-apps?utm_source=github&utm_medium=nextjs-repo)_
+- **Automatische Productaanbevelingen**: Genereert productaanbevelingen gebaseerd op beschikbare data.
+- **ML-gedreven Analyse**: Maakt gebruik van Python-gebaseerde machine learning algoritmen om nauwkeurige en effectieve cross-sell mogelijkheden te identificeren.
+- **Eenvoudige Integratie**: Naadloze integratie met Shopify-winkels, waardoor winkelbeheerders gemakkelijk de cross-sell sectie kunnen beheren en aanpassen.
+- **Real-time Updates**: De aanbevelingen worden in real-time bijgewerkt, rekening houdend met de nieuwste klantinteracties en productwijzigingen.
 
-[![How To Build Shopify Apps Course](https://raw.githubusercontent.com/kinngh/extras/main/csa_promo.png)](https://kinngh.gumroad.com/l/how-to-make-shopify-apps)
+## Installatie
 
-[![Creating a Shopify app from scratch](http://i3.ytimg.com/vi/Z_JFpEJRh_g/hqdefault.jpg)](https://www.youtube.com/watch?v=Z_JFpEJRh_g)
+### Vereisten
 
-## Supporting repositories
+- Shopify-winkelaccount
+- Python 3.x (voor de ML-component)
+- Node.js en npm (voor de Shopify-app)
 
-- [`@kinngh/shopify-node-express-mongodb-app`](https://github.com/kinngh/shopify-node-express-mongodb-app): Shopify app starter repo built with Express.js, React.js and Vite.
-- [`@kinngh/shopify-polaris-playground`](https://github.com/kinngh/shopify-polaris-playground): Build your app's UI using Polaris, without an internet connection.
+### Stap-voor-Stap Installatie
 
-## Tech Stack
+1. **Kloon de Repository**:
+   ```bash
+   git clone https://github.com/youpv/shopify-nextjs-prisma-app.git
+   cd shopify-nextjs-prisma-app
+   ```
 
-- Next.js 13
-- Prisma ORM
+2. **Installeer Afhankelijkheden**:
+   ```bash
+   npm install
+   ```
 
-## Why I made this
+3. **Configureer Variabelen**:
+   Maak een `.env` bestand in de root van het project en vul de vereiste Shopify en database credentials in.
 
-Building with Express and React was great but eventually there comes a time where you have to remind yourself that you need to get on with the times and use what's new and stable. Serverless made sense, and Next.js made even more.
+4. **Start ngrok server**:
+   ```bash
+   npm run ngrok
+   ```
 
-## Notes
+5. **Configureer Shop-URL**:
+    Plaats de ngrok URL in het `.env` bestand in de root van het project.
 
-- Refer to [SETUP](/docs/SETUP.md)
-- The project comes with snippets to speed up development. Refer to [Snippets](/docs/SNIPPETS.md).
-- App Bridge CDN migration guide is available [here](/docs/migration/app-bridge-cdn.md)
+6. **Update de Shopify URLs**:
+   ```bash
+   npm run update:url
+   ```
+   Pas handmatig in je partnetpaneel de Proxy en GDPR URL's aan.
+
+7. **Start ngrok server**:
+   ```bash
+   npm run start
+   ```
+
+### VEEL STAPPEN KOMEN NOG HIER. DIT IS EEN INCOMPLETE SETUP README.
+
+
+8. **Configureer de Python ML-Component**:
+   Volg de instructies in de Python-component directory om de ML-modellen te trainen en te deployen.
+
+## Gebruik
+
+Na installatie en configuratie zal de app automatisch gepersonaliseerde productaanbevelingen genereren en weergeven in de cross-sell sectie van je Shopify-winkel.
+
