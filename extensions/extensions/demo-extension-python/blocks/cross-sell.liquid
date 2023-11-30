@@ -98,6 +98,7 @@
       const form = card.querySelector(`#form-${product.id}`);
       form.addEventListener('submit', async function (event) {
         event.preventDefault();
+        event.stopPropagation();
         try {
           const formData = new FormData(form);
           const response = await fetch('/cart/add.js', {
