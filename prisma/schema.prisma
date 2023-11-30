@@ -21,8 +21,26 @@ model session {
   shop    String?
 }
 
-model product {
-  id String @id @default(uuid())
-  content String @default("test")
+// model product {
+//   id String @id @default(uuid())
+//   content String @default("test")
+// }
+
+// Change the model product to fit this data:
+        // handle: product.handle,
+        // title: product.title,
+        // description: product.description,
+        // price: product.variants[0].price,
+        // tags: product.tags,
+
+model products {
+  id          String   @id @default(uuid())
+  handle      String
+  title       String
+  description String
+  price       Float
+  tags        String[]
 }
+
+
 // This shows how I can add product data to the database, dont forget to run npx prisma DB push

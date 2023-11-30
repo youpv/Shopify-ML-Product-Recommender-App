@@ -25,6 +25,30 @@ const HomePage = () => {
       <Page title="Home">
         <Layout>
           <Layout.Section variant="fullWidth">
+            {/* Here I want a button that calls a function to get all products and send them to the prisma database. */}
+            <Card>
+              <BlockStack gap="200">
+                <Text as="h2" variant="headingMd">
+                  Get Products
+                </Text>
+                <Text>
+                  Get all products from the store and send them to the prisma
+                  database.
+                </Text>
+                <InlineStack wrap={false} align="end">
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      router.push("/getProducts");
+                    }}
+                  >
+                    Get Products
+                  </Button>
+                </InlineStack>
+              </BlockStack>
+            </Card>
+          </Layout.Section>
+          <Layout.Section variant="fullWidth">
             <Card>
               <BlockStack gap="200">
                 <Text as="h2" variant="headingMd">

@@ -33,8 +33,8 @@ const DebugIndex = () => {
   const openResourcePicker = async () => {
     const result = await shopify.resourcePicker({
       type: "product",
-      selectMultiple: false,
-      showVariants: false,
+      multiple: false,
+      variants: false,
     });
     if (result) {
       console.log(result[0].handle);
