@@ -87,7 +87,7 @@
                 <input type="hidden" name="quantity" value="1" />
                 <input type="hidden" name="return_to" value="back" />
                 <div class="product-form__buttons">
-                  <button type="submit" name="add" class="product-form__submit button button--full-width button--secondary">
+                  <button type="submit" name="add" class="product-form__submit button button--full-width {% if block.settings.recommendation_cta_is_primary %} button--primary {% else %} button--secondary {% endif %}">
                     <span>Add to cart</span>
                     </button>
                   </div>
@@ -186,16 +186,10 @@
       "default": "#ffffff"
     },
     {
-      "type": "color",
-      "id": "recommendation_cta_color",
-      "label": "CTA Color",
-      "default": "#000000"
-    },
-    {
-      "type": "text",
-      "id": "recommendation_font_size",
-      "label": "Font Size",
-      "default": "16px"
+      "type": "checkbox",
+      "id": "recommendation_cta_is_primary",
+      "label": "Add to Cart Button is Primary",
+      "default": false
     },
     {
       "type": "number",
@@ -223,8 +217,6 @@
   :root {
   --text-color: {{ block.settings.recommendation_text_color }};
   --background-color: {{ block.settings.recommendation_background_color }};
-  --font-size: {{ block.settings.recommendation_font_size }};
-  --cta-color: {{ block.settings.recommendation_cta_color }};
   }
 
   #cross-sell-section {
