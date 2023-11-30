@@ -34,11 +34,11 @@ model session {
         // tags: product.tags,
 
 model products {
-  id          String   @id @default(uuid())
+  id          String @id
   handle      String
   title       String
   description String
-  price       Float
+  price       String
   tags        String[]
 }
 
