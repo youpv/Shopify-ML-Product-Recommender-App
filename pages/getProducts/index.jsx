@@ -8,11 +8,8 @@ import {
   BlockStack,
 } from "@shopify/polaris";
 import { useRouter } from "next/router";
-// import { useState } from "react";
-import prisma from "@/utils/prisma";
 
 const GetProductsIndex = () => {
-  //   const [selectedProducts, setSelectedProducts] = useState([]);
   const router = useRouter();
 
   const openResourcePicker = async () => {
@@ -41,11 +38,29 @@ const GetProductsIndex = () => {
         tags: product.tags,
       };
     });
-    await prisma.product.createMany({
-      data: products,
-      skipDuplicates: true,
-    });
-    console.log(products);
+    try {
+      const response = await fetch("/api/apps/products/storeProducts", {
+        method: "POST",
+        body: JSON.stringify(products),
+      });
+
+      if (response.ok) {
+        console.log(
+          "Products successfully stored in the database. This is the response: ",
+          response.json()
+        );
+      } else {
+        console.error(
+          "Error while storing products in the database. This is the response: ",
+          response.json()
+        );
+      }
+    } catch (error) {
+      console.error(
+        "Error while storing products in the database. This is the error: ",
+        error
+      );
+    }
   };
 
   return (
