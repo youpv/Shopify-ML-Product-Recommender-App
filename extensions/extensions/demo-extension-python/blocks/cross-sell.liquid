@@ -239,12 +239,15 @@
     flex: 0 0 20%;
     min-width: 200px;
     min-height: 320px;
-    margin-right: 10px;
     background: var(--background-color);
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  .product-card:not(:last-child) {
+    margin-right: 10px;
   }
 
   .product-card__info {
