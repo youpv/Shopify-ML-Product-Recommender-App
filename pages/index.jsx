@@ -29,20 +29,19 @@ const HomePage = () => {
             <Card>
               <BlockStack gap="200">
                 <Text as="h2" variant="headingMd">
-                  Get Products
+                  Configure Recommendation Engine
                 </Text>
                 <Text>
-                  Get all products from the store and send them to the prisma
-                  database.
+                  Control what data is sent to the machine learning backend.
                 </Text>
                 <InlineStack wrap={false} align="end">
                   <Button
                     variant="primary"
                     onClick={() => {
-                      router.push("/getProducts");
+                      router.push("/configureEngine");
                     }}
                   >
-                    Get Products
+                    Configure
                   </Button>
                 </InlineStack>
               </BlockStack>

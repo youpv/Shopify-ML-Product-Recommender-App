@@ -16,7 +16,7 @@ const GetProductsIndex = () => {
 
   // VERANDER DE NAAM NOG VAN TEST.JS EN VERGEET NIET TE CHECKEN OF JE DE DATA IN PYTHON KAN UPDATEN MET EEN WEBHOOK ZOALS OnUninstall.
   // BOVENDIEN CHECK OOK DE EDGE CASE WAT ER GEBEURT ALS ER EEN PRODUCT IN PRISMA STAAT, MAAR UIT DE SHOPIFY STORE WORDT VERWIJDERD.
-  // DIT IS LIKE, BEST BELANGRIJK VOOR DE DEMO. 
+  // DIT IS LIKE, BEST BELANGRIJK VOOR DE DEMO.
 
   const getProductsFromDb = async () => {
     try {
@@ -118,18 +118,80 @@ const GetProductsIndex = () => {
       throwError(error);
     }
   };
+
   const throwError = (error) => {
     console.error(
-      "Error while storing products in the database. This is the error: ",
+      "Error occured while configuring the engine. Error: ",
       error
     );
+  };
+
+  const getAllOrders = async () => {
+    try {
+      const response = await fetch("/api/apps/orders/getOrders", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true",
+        },
+      });
+      if (response.ok) {
+        const orders = await response.json();
+        console.log("Orders: ", orders);
+        return orders;
+      } else {
+        throwError(response);
+      }
+    } catch (error) {
+      throwError(error);
+    }
+  };
+
+  const sendOrdersToPrisma = async () => {
+    const orders = await getAllOrders();
+    console.log("Orders to send: ", orders);
+    const formattedOrders = orders.edges.map((edge) => {
+      return {
+        id: edge.node.id,
+        name: edge.node.name,
+        customerId: edge.node.customer.id,
+        lineItems: edge.node.lineItems.edges.map((item) => {
+          return {
+            id: item.node.product.id,
+            handle: item.node.product.handle,
+            quantity: item.node.quantity
+          };
+        }),
+      };
+    });
+    console.log("Formatted orders: ", formattedOrders);
+    try {
+      const response = await fetch("/api/apps/orders/storeOrders", {
+        method: "POST",
+        body: JSON.stringify(formattedOrders),
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true",
+        },
+      });
+      if (response.ok) {
+        console.log(
+          "Orders successfully stored in the database. This is the response: ",
+          response
+        );
+      } else {
+        throwError(response);
+      }
+    } catch (error) {
+      throwError(error);
+    }
   };
 
   return (
     <>
       <Page
-        title="Get Products"
-        subtitle="Send all products to the machine learning backend."
+        title="Configure Recommendation Engine"
+        subtitle="Control what data is sent to the machine learning backend."
         backAction={{ content: "Home", onAction: () => router.push("/") }}
       >
         <Layout>
@@ -162,6 +224,29 @@ const GetProductsIndex = () => {
                     }}
                   >
                     Select Products
+                  </Button>
+                </InlineStack>
+              </BlockStack>
+            </Card>
+          </Layout.Section>
+          <Layout.Section>
+            <Card>
+              <BlockStack gap="200">
+                <Text as="h2" variant="headingMd">
+                  Push Orders
+                </Text>
+                <Text>
+                  Push all orders from Shopify to send to the machine learning
+                  backend.
+                </Text>
+                <InlineStack wrap={false} align="end" gap="200">
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      sendOrdersToPrisma();
+                    }}
+                  >
+                    Push Orders
                   </Button>
                 </InlineStack>
               </BlockStack>
