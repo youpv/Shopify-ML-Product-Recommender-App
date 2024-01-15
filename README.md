@@ -1,73 +1,46 @@
-# Shopify Cross-Sell App met Machine Learning
+# ML-Based Product Recommendation Shopify App 🛍️🧠
 
-## BELANGRIJKE INFORMATIE VOOR GASTEN VAN DEZE REPO
-Dit project is nog niet klaar, nog lang niet. Op dit moment is er nog veel refactoring te doen. Wat je wél al kunt bekijken is de extensie code! Ga daarvoor naar [cross-sell.liquid](extensions/extensions/demo-extension-python/blocks/cross-sell.liquid).
+## Inleiding 🚀
+Dit project is een Shopify App die connecties maakt met een API en Database voor een Machine Learning Aanbevelingssysteem. Het is een uitgebreide app die zich richt op het verbeteren van de winkelervaring door gepersonaliseerde productaanbevelingen. Een werkende demo van de app is te vinden op mijn [Shopify Testwinkel](https://youpteststore1.myshopify.com).
+> **⚠️** De demo-site werkt alleen wanneer de server draait op de iMac op kantoor. Daarbij moet de Python server aanstaan die te vinden is in [deze repo](https://github.com/youpv/ML-Aanbevelingssysteem).
 
-PROJECT IS TE TESTEN OP [Test Shopify Store](https://youpteststore1.myshopify.com/). (Werkt alleen als iMac aanstaat hehe.)
+## Belangrijkste Kenmerken 🌟
+- **Eigen API Endpoints**: Beheert orders en producten via `pages/api/apps/orders` en `pages/api/apps/products`.
+- **Cross-Sell Extension**: Een belangrijk onderdeel van de app, gelegen in `extensions/extensions/demo-extension-python/blocks/cross-sell.liquid`, biedt cross-sell mogelijkheden in de Shopify winkel.
 
-Meer is nog niet handig om te beijken. De Python code staat in een andere repo. Mocht je hier geen toegang tot hebben, vraag het me dan. De rest van de readme is nog niet echt relevant.
+## Technologieën Gebruikt 💻
+- Next.js
+- Prisma
+- Shopify API
 
-## Overzicht
+## Installatie 💾
 
-Deze Shopify-app integreert machine learning (ML) mogelijkheden, ontwikkeld in Python (andere repo), om een gepersonaliseerde cross-sell sectie toe te voegen aan Shopify-winkels. Door gebruik te maken van geavanceerde ML-algoritmen, analyseert de app klantgedrag en productgegevens om relevante productaanbevelingen te genereren, waardoor de verkoopkansen worden vergroot.
-
-## Belangrijkste Functies
-
-- **Automatische Productaanbevelingen**: Genereert productaanbevelingen gebaseerd op beschikbare data.
-- **ML-gedreven Analyse**: Maakt gebruik van Python-gebaseerde machine learning algoritmen om nauwkeurige en effectieve cross-sell mogelijkheden te identificeren.
-- **Eenvoudige Integratie**: Naadloze integratie met Shopify-winkels, waardoor winkelbeheerders gemakkelijk de cross-sell sectie kunnen beheren en aanpassen.
-- **Real-time Updates**: De aanbevelingen worden in real-time bijgewerkt, rekening houdend met de nieuwste klantinteracties en productwijzigingen.
-
-## Installatie
-
-### Vereisten
-
-- Shopify-winkelaccount
-- Python 3.x (voor de ML-component)
-- Node.js en npm (voor de Shopify-app)
-
-### Stap-voor-Stap Installatie
-
-1. **Kloon de Repository**:
-   ```bash
+1. **Kloon de Repository** 👨‍💻
+   ```
    git clone https://github.com/youpv/shopify-nextjs-prisma-app.git
    cd shopify-nextjs-prisma-app
    ```
 
-2. **Installeer Afhankelijkheden**:
-   ```bash
+2. **Installeer NPM Pakketten** 📦
+   ```
    npm install
    ```
 
-3. **Configureer Variabelen**:
-   Maak een `.env` bestand in de root van het project en vul de vereiste Shopify en database credentials in.
+3. **Configureer en Start de Applicatie** 🌟  
+   Volg de instructies in de `package.json` om de app te configureren en te starten.
 
-4. **Start ngrok server**:
-   ```bash
-   npm run ngrok
-   ```
+## Gebruik 📋
+Na het configureren en starten van de app, kun je de Shopify App integreren met je Shopify winkel. Gebruik de cross-sell extensie om gepersonaliseerde productaanbevelingen aan je klanten te tonen.
 
-5. **Configureer Shop-URL**:
-    Plaats de ngrok URL in het `.env` bestand in de root van het project.
+## API Endpoints 📡
+- **Orders**: Beheer bestellingen via de endpoints in `pages/api/apps/orders`.
+- **Producten**: Beheer productgegevens via de endpoints in `pages/api/apps/products`.
 
-6. **Update de Shopify URLs**:
-   ```bash
-   npm run update:url
-   ```
-   Pas handmatig in je partnetpaneel de Proxy en GDPR URL's aan.
+## Cross-Sell Extensie 🛒
+De cross-sell extensie in `extensions/extensions/demo-extension-python/blocks/cross-sell.liquid` is het hart van de app. Het biedt een dynamische manier om gerelateerde producten aan klanten te tonen, wat de verkoop kan stimuleren.
 
-7. **Start ngrok server**:
-   ```bash
-   npm run start
-   ```
+## Licentie 📜
+Dit project is gebouwd op de basisapplicatie van [Harshdeep Singh Hura](https://github.com/kinngh) en is gelicenseerd onder de [MIT License](LICENSE).
 
-### VEEL STAPPEN KOMEN NOG HIER. DIT IS EEN INCOMPLETE SETUP README.
-
-
-8. **Configureer de Python ML-Component**:
-   Volg de instructies in de Python-component directory om de ML-modellen te trainen en te deployen.
-
-## Gebruik
-
-Na installatie en configuratie zal de app automatisch gepersonaliseerde productaanbevelingen genereren en weergeven in de cross-sell sectie van je Shopify-winkel.
-
+## Bijdragen 👥
+Ik accepteer geen bijdragen aan dit project.
