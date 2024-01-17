@@ -2,13 +2,38 @@
   <script>
     async function initializeCrossSell() {
       try {
-        const recommendations = await fetchRecommendations();
+        const fetchedRecommendations = await fetchRecommendations();
+        console.log('Fetched recommendations', fetchedRecommendations);
+        const baseRecommendations = getBaseRecommendations();
+        console.log('Base recommendations', baseRecommendations);
+        const recommendations = mergeAndTrimRecommendations(
+          baseRecommendations,
+          fetchedRecommendations
+        );
+        console.log('Merged recommendations', recommendations);
         const products = await fetchProductDetails(recommendations);
         createProductList(products);
       } catch (e) {
         console.error('Error initializing cross sell', e);
       }
     }
+
+    function getBaseRecommendations() {
+      let baseRecommendationsHandles = [];
+      {% if product.metafields.custom.base_product_recommendations %}
+        {% assign baseRecommendations = product.metafields.custom.base_product_recommendations %}
+        {% for recommendation in baseRecommendations.value %}
+          baseRecommendationsHandles.push('{{ recommendation.handle }}');
+        {% endfor %}
+      {% endif %}
+      return baseRecommendationsHandles;
+    }
+
+    function mergeAndTrimRecommendations(baseRecommendations, fetchedRecommendations) {
+      const mergedRecs = [...new Set([...baseRecommendations, ...fetchedRecommendations])];
+      return mergedRecs.slice(0, {{ block.settings.number_of_recommendations }});
+    }
+
 
     async function fetchRecommendations() {
       const url =
@@ -154,6 +179,7 @@
     }
 
     initializeCrossSell();
+    console.log('Cross sell initialized, v35');
 
     document.addEventListener('DOMContentLoaded', () => {
       const savedPosition = sessionStorage.getItem('scroll-position');
