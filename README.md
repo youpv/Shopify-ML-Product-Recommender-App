@@ -34,7 +34,9 @@
   <a href="#bijdragen-👥">Bijdragen</a>
 </p>
 
-![screenshot](https://github.com/youpv/shopify-nextjs-prisma-app/blob/dee72f565eae546ebb59663cdf7356562ecc9c14/.github/assets/shopify-app-preview.gif?raw=true)
+<p align="center">
+  <img src="https://github.com/youpv/shopify-nextjs-prisma-app/blob/dee72f565eae546ebb59663cdf7356562ecc9c14/.github/assets/shopify-app-preview.gif?raw=true" alt="Screenshot App Functionality">
+</p>
 
 ## Inleiding 🚀
 Dit project is een Shopify App die connecties maakt met een API en Database voor een Machine Learning Aanbevelingssysteem. Het is een uitgebreide app die zich richt op het verbeteren van de winkelervaring door gepersonaliseerde productaanbevelingen. Een werkende demo van de app is te vinden op mijn [Shopify Testwinkel](https://youpteststore1.myshopify.com).
