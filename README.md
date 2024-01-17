@@ -74,4 +74,4 @@ Na het configureren en starten van de app, kun je de Shopify App integreren met 
 Dit project is gebouwd op de basisapplicatie van [Harshdeep Singh Hura](https://github.com/kinngh) en is gelicenseerd onder de [MIT License](LICENSE).
 
 ## Bijdragen 👥
-Ik accepteer geen bijdragen aan dit project.
+Dit project is een onderdeel van mijn stage bij [EnoRm](https://enorm.com/). Alleen medewerkers van EnoRm kunnen bijdragen aan dit project.
