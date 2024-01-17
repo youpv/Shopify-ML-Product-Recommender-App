@@ -14,7 +14,7 @@
     <img src="https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" 
          alt="Next.js" height="28">
   </a>
-  <a href="https://www.prisma.io/">
+  <a href="https://prisma.io/">
     <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" 
          alt="Prisma ORM" height="28">
   </a>
@@ -25,13 +25,13 @@
 </p>
 
 <p align="center">
-  <a href="#inleiding-🚀">Inleiding</a> •
-  <a href="#belangrijkste-kenmerken-🌟">Belangrijkste Kenmerken</a> •
-  <a href="#technologieën-💻">Technologieën</a> •
-  <a href="#installatie-💾">Installatie</a> •
-  <a href="#gebruik-📋">Gebruik</a> •
-  <a href="#licentie-📜">Licentie</a> •
-  <a href="#bijdragen-👥">Bijdragen</a>
+  <a href="#inleiding-">Inleiding</a> •
+  <a href="#belangrijkste-kenmerken-">Belangrijkste Kenmerken</a> •
+  <a href="#technologieën-">Technologieën</a> •
+  <a href="#installatie-">Installatie</a> •
+  <a href="#gebruik-">Gebruik</a> •
+  <a href="#licentie-">Licentie</a> •
+  <a href="#bijdragen-">Bijdragen</a>
 </p>
 
 <p align="center">
@@ -48,7 +48,7 @@ Dit project is een Shopify App die connecties maakt met een API en Database voor
 
 ## Technologieën 💻
 - [Next.js](https://nextjs.org/)
-- [Prisma](https://www.prisma.io/)
+- [Prisma](https://prisma.io/)
 - [Shopify](https://shopify.dev/docs/apps)
 
 ## Installatie 💾
