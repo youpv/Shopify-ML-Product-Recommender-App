@@ -7,20 +7,21 @@ setupCheck();
 
 console.log(`--> Running in ${process.env.NODE_ENV} mode`);
 
+const API_DESTINATION = process.env.API_DESTINATION;
+
 const rewrites = () => {
   return [
     {
       source: "/api/recommendation/:productHandle",
-      destination: "http://127.0.0.1:5137/api/recommendation/:productHandle",
+      destination: `${API_DESTINATION}/api/recommendation/:productHandle`,
     },
     {
       source: "/api/recommendation/:productHandle/:numRecs",
-      destination:
-        "http://127.0.0.1:5137/api/recommendation/:productHandle/:numRecs",
+      destination: `${API_DESTINATION}/api/recommendation/:productHandle/:numRecs`,
     },
     {
       source: "/api/products",
-      destination: "http://127.0.0.1:5137/api/products",
+      destination: `${API_DESTINATION}/api/products`,
     },
   ];
 };
